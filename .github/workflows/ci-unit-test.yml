@@ -39,9 +39,10 @@ jobs:
       run: |
         wget https://github.com/SonarSource/sonar-scanner-cli/archive/4.3.0.2102.zip
         unzip 4.3.0.2102.zip
+        ls -la sonar-scanner-cli-4.3.0.2102
 
     - name: Run Scan
-      run: 4.3.0.2102/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN} -Dsonar.branch.name=${BRANCH}
+      run: sonar-scanner-cli-4.3.0.2102/src/main/assembly/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN} -Dsonar.branch.name=${BRANCH}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
