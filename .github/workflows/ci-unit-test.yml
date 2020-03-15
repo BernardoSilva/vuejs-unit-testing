@@ -37,12 +37,12 @@ jobs:
 
     - name: Install Sonar
       run: |
-        wget https://github.com/SonarSource/sonar-scanner-cli/archive/4.3.0.2102.zip
-        unzip 4.3.0.2102.zip
-        ls -la sonar-scanner-cli-4.3.0.2102
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873.zip
+        unzip sonar-scanner-cli-4.2.0.1873.zip
+        ls -la sonar-scanner-4.2.0.1873
 
     - name: Run Scan
-      run: sonar-scanner-cli-4.3.0.2102/src/main/assembly/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN} -Dsonar.branch.name=${BRANCH}
+      run: sonar-scanner-4.2.0.1873/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN} -Dsonar.branch.name=${BRANCH}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
