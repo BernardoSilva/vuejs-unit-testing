@@ -26,6 +26,8 @@ jobs:
       run: |
         npm --version
         yarn --version
+        pwd
+        ls -la
 
     - name: Install project dependencies
       run: yarn install
