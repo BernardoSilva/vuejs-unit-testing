@@ -35,8 +35,20 @@ jobs:
     - name: Run unit tests
       run: yarn run test:unit
 
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
+    - name: Install Sonar
+      run: |
+        wget https://github.com/SonarSource/sonar-scanner-cli/archive/4.3.0.2102.zip
+        unzip 4.3.0.2102.zip
+
+    - name: Run Scan
+      run: 4.3.0.2102/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN} -Dsonar.branch.name=${BRANCH}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        BRANCH: master
+
+    # - name: SonarCloud Scan
+    #   uses: sonarsource/sonarcloud-github-action@master
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
